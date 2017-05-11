@@ -1,0 +1,43 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+#map {
+	width: 100vw;
+	height: 100vh;
+}
+
+.H_ib_body {
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.75);
+
+	h1 {
+		margin: 0;
+		padding: 0;
+		font-size: 15px;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+	}
+}
+
+#user-locator {
+	position: fixed;
+	right: 20px;
+	top: 20px;
+	z-index: 1000;
+
+	img {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.hidden {
+	display: none;
+}
