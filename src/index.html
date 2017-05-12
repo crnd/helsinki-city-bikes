@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, width=device-width">
 		<link rel="stylesheet" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 		<link rel="stylesheet" href="site.min.css">
 		<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
 		<script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
@@ -14,8 +15,22 @@
 	</head>
 	<body>
 		<div id="map">
+			<div id="greeting-dialog-opener">
+				<img src="gfx/hamburger.svg" alt="Open the greeting dialog.">
+			</div>
 			<div id="user-locator" class="hidden">
 				<img src="gfx/user-locator.svg" alt="Center the map to current user location.">
+			</div>
+			<div id="greeting-wrapper" class="hidden">
+				<div id="greeting">
+					<div id="greeting-image"></div>
+					<h1>Helsinki City Bikes</h1>
+					<p>Helsinki City Bikes is a simple UI for quickly checking the status of Helsinki City Bike stations.</p>
+					<p>The bike stations are marked with green, yellow and red markers depending on the amount of bikes available at the station. By clicking/tapping on a bike station you will see a bit more detailed description of the station status.</p>
+					<p>The site automatically updates your location and the status of the bike stations so there is no reason to refresh the page.</p>
+					<p>The source code can be found from <a href="https://github.com/crnd/helsinki-city-bikes">GitHub</a>.</p>
+					<button id="close-greeting" type="button">Got it!</button>
+				</div>
 			</div>
 		</div>
 	</body>

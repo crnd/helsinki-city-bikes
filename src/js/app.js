@@ -1,5 +1,22 @@
 window.onload = function () {
 
+	// Close the greeting dialog from the button.
+	document.getElementById('close-greeting').addEventListener('click', function () {
+		document.getElementById('greeting-wrapper').className = 'hidden';
+		localStorage.setItem('greetingClosed', 'closed');
+	});
+
+	// Show the greeting dialog if the user is on the page for the first time.
+	var greetingClosed = localStorage.getItem('greetingClosed');
+	if (greetingClosed === null) {
+		document.getElementById('greeting-wrapper').className = '';
+	}
+
+	// Open the greeting dialog again from the hamburger button.
+	document.getElementById('greeting-dialog-opener').addEventListener('click', function () {
+		document.getElementById('greeting-wrapper').className = '';
+	});
+
 	// Colored marker icons for bike stations.
 	var noBikesIcon = new H.map.Icon('gfx/red-marker.svg');
 	var someBikesIcon = new H.map.Icon('gfx/yellow-marker.svg');
