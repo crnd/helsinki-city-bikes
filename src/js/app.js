@@ -33,6 +33,9 @@ window.onload = function () {
 	var map = new H.Map(document.getElementById('map'), defaultLayers.normal.map);
 	var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 	var ui = H.ui.UI.createDefault(map, defaultLayers);
+	window.addEventListener('resize', function () {
+		map.getViewPort().resize();
+	});
 
 	// Try to fetch the coordinates where the map was centered last time.
 	var lastMapCoordinatesJson = localStorage.getItem('lastLocation');
