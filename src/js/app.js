@@ -54,49 +54,58 @@ window.onload = function () {
 		map.setZoom(17);
 	}
 
-	// Fetch the status of bike stations.
-	var bikeRequest = new XMLHttpRequest();
-	bikeRequest.onreadystatechange = function () {
-		if (this.readyState === 4 && this.status === 200) {
-			var markerOptions = {
-				min: 13
-			};
-
-			// Draw a marker on the map for each bike station
-			// with marker color representing the amount of available bikes.
-			JSON.parse(this.response).stations.forEach(function (station) {
-				var totalSpaces = station.bikesAvailable + station.spacesAvailable;
-				markerOptions.data = {
-					name: station.name,
-					bikesAvailable: station.bikesAvailable,
-					spacesAvailable: station.spacesAvailable
+	// Fetch the status of bike stations immediately and then in intervals.
+	var markerGroup = new H.map.Group();
+	(function updateStations() {
+		var bikeStationRequest = new XMLHttpRequest();
+		bikeStationRequest.onreadystatechange = function () {
+			if (this.readyState === 4 && this.status === 200) {
+				var markerOptions = {
+					min: 13
 				};
-				if (station.bikesAvailable === 0) {
-					markerOptions.icon = noBikesIcon;
-				} else if (station.bikesAvailable / totalSpaces < 0.25 || station.bikesAvailable <= 2) {
-					markerOptions.icon = someBikesIcon;
-				} else {
-					markerOptions.icon = enoughBikesIcon;
-				}
-				var marker = new H.map.Marker({
-					lat: station.y,
-					lng: station.x
-				}, markerOptions);
-				marker.addEventListener('tap', function (event) {
-					var bubble = new H.ui.InfoBubble(
-						event.target.getPosition(),
-						{
-							content: '<h1>' + station.name + '</h1><p>' +
-								station.bikesAvailable + ' of ' + totalSpaces + ' bikes available</p>'
-						});
-					ui.addBubble(bubble);
+
+				// Draw a marker on the map for each bike station
+				// with marker color representing the amount of available bikes.
+				var markers = [];
+				JSON.parse(this.response).stations.forEach(function (station) {
+					var totalSpaces = station.bikesAvailable + station.spacesAvailable;
+					markerOptions.data = {
+						name: station.name,
+						bikesAvailable: station.bikesAvailable,
+						spacesAvailable: station.spacesAvailable
+					};
+					if (station.bikesAvailable === 0) {
+						markerOptions.icon = noBikesIcon;
+					} else if (station.bikesAvailable / totalSpaces < 0.25 || station.bikesAvailable <= 2) {
+						markerOptions.icon = someBikesIcon;
+					} else {
+						markerOptions.icon = enoughBikesIcon;
+					}
+					var marker = new H.map.Marker({
+						lat: station.y,
+						lng: station.x
+					}, markerOptions);
+					marker.addEventListener('tap', function (event) {
+						var bubble = new H.ui.InfoBubble(
+							event.target.getPosition(),
+							{
+								content: '<h1>' + station.name + '</h1><p>' +
+									station.bikesAvailable + ' of ' + totalSpaces + ' bikes available</p>'
+							});
+						ui.addBubble(bubble);
+					});
+					markers.push(marker);
 				});
-				map.addObject(marker);
-			})
+
+				markerGroup.removeAll();
+				markerGroup.addObjects(markers);
+				map.addObject(markerGroup);
+			}
 		}
-	}
-	bikeRequest.open('GET', 'https://api.digitransit.fi/routing/v1/routers/hsl/bike_rental', true);
-	bikeRequest.send();
+		bikeStationRequest.open('GET', 'https://api.digitransit.fi/routing/v1/routers/hsl/bike_rental', true);
+		bikeStationRequest.send();
+		setTimeout(updateStations, 180000);
+	})();
 
 	// Store the zoom level and center coordinates from the map every time dragging stops.
 	map.addEventListener('dragend', function (event) {
