@@ -19,8 +19,8 @@ $rounding: 15px;
 		border-radius: $rounding;
 		background-color: #ffffff;
 		box-shadow: 0 0 5px #000000;
-        text-align: center;
-        font-family: 'Lato', sans-serif;
+		text-align: center;
+		font-family: 'Lato', sans-serif;
 
 		#greeting-image {
 			width: 100%;
@@ -29,40 +29,40 @@ $rounding: 15px;
 			background: url("gfx/bikes.jpg") 50% 50% / cover no-repeat;
 		}
 
-        h1 {
-            margin: 10px;
-            padding: 0;
-        }
+		h1 {
+			margin: 10px;
+			padding: 0;
+		}
 
-        p {
-            margin: 0;
-            padding: 10px 20px 0px 20px;
-            font-size: 13px;
-        }
+		p {
+			margin: 0;
+			padding: 10px 20px 0px 20px;
+			font-size: 13px;
+		}
 
-        a {
-            text-decoration: underline;
-            color: #000000;
-        }
+		a {
+			text-decoration: underline;
+			color: #000000;
+		}
 
-        button {
-            margin-top: 25px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 5px 30px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            background-color: #0099ff;
-            border-color: #0099ff;
-            color: #ffffff;
-            text-shadow: 1px 1px 1px #000000;
-        }
+		button {
+			margin-top: 25px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 5px 30px;
+			border-radius: 5px;
+			text-transform: uppercase;
+			background-color: #0099ff;
+			border-color: #0099ff;
+			color: #ffffff;
+			text-shadow: 1px 1px 1px #000000;
+		}
 	}
 
-    @media (min-width: 550px) {
-        #greeting {
-            width: 400px;
-            height: 600px;
-        }
-    }
+	@media (min-width: 550px) {
+		#greeting {
+			width: 400px;
+			height: 600px;
+		}
+	}
 }
