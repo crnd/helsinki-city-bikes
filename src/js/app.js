@@ -1,16 +1,15 @@
 window.onload = function () {
 
+	// Show the greeting dialog if the user is on the page for the first time.
+	if (localStorage.getItem('greetingShown') === null) {
+		document.getElementById('greeting-wrapper').className = '';
+		localStorage.setItem('greetingShown', 'yup');
+	}
+
 	// Close the greeting dialog from the button.
 	document.getElementById('close-greeting').addEventListener('click', function () {
 		document.getElementById('greeting-wrapper').className = 'hidden';
-		localStorage.setItem('greetingClosed', 'closed');
 	});
-
-	// Show the greeting dialog if the user is on the page for the first time.
-	var greetingClosed = localStorage.getItem('greetingClosed');
-	if (greetingClosed === null) {
-		document.getElementById('greeting-wrapper').className = '';
-	}
 
 	// Open the greeting dialog again from the hamburger button.
 	document.getElementById('greeting-dialog-opener').addEventListener('click', function () {
