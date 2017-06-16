@@ -110,13 +110,12 @@ window.onload = function () {
 	})();
 
 	// Store the zoom level and center coordinates from the map every time dragging stops.
-	map.addEventListener('dragend', function (event) {
+	map.addEventListener('mapviewchangeend', function () {
 		localStorage.setItem('lastZoomLevel', map.getZoom());
 		localStorage.setItem('lastLocation', JSON.stringify(map.getCenter()));
 	});
 
 	if ('geolocation' in navigator) {
-
 		var currentUserLocation = {
 			lat: 0,
 			lng: 0
@@ -128,12 +127,11 @@ window.onload = function () {
 
 		// Create an event handler for centering the map to the location of the user
 		// when user locator button has been clicked.
-		document.getElementById('user-locator').addEventListener('click', function (event) {
+		document.getElementById('user-locator').addEventListener('click', function () {
 			map.setCenter(currentUserLocation);
 		});
 
 		navigator.geolocation.watchPosition(function (position) {
-
 			currentUserLocation.lat = position.coords.latitude;
 			currentUserLocation.lng = position.coords.longitude;
 
