@@ -1,0 +1,15 @@
+{
+	"name": "Helsinki City Bikes",
+	"short_name": "City Bikes",
+	"start_url": ".",
+	"display": "fullscreen",
+	"background_color": "#ffffff",
+	"description": "A simple app for quickly checking the status of Helsinki City Bike stations.",
+	"icons": [
+		{
+			"src": "gfx/bike.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
