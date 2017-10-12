@@ -70,7 +70,12 @@ window.onload = function () {
 				// with marker color representing the amount of available bikes.
 				var markers = [];
 				JSON.parse(this.response).stations.forEach(function (station) {
-					var totalSpaces = station.bikesAvailable + station.spacesAvailable;
+					var bubbleContent = '<h1>' + station.name + '</h1><p>' + station.bikesAvailable;
+					if (station.bikesAvailable === 1) {
+						bubbleContent += ' bike available</p>';
+					} else {
+						bubbleContent += ' bikes available</p>';
+					}
 					markerOptions.data = {
 						name: station.name,
 						bikesAvailable: station.bikesAvailable,
@@ -78,7 +83,7 @@ window.onload = function () {
 					};
 					if (station.bikesAvailable === 0) {
 						markerOptions.icon = noBikesIcon;
-					} else if (station.bikesAvailable / totalSpaces < 0.25 || station.bikesAvailable <= 2) {
+					} else if (station.bikesAvailable <= 2) {
 						markerOptions.icon = someBikesIcon;
 					} else {
 						markerOptions.icon = enoughBikesIcon;
@@ -91,8 +96,7 @@ window.onload = function () {
 						var bubble = new H.ui.InfoBubble(
 							event.target.getPosition(),
 							{
-								content: '<h1>' + station.name + '</h1><p>' +
-									station.bikesAvailable + ' of ' + totalSpaces + ' bikes available</p>'
+								content: bubbleContent
 							});
 						ui.addBubble(bubble);
 					});
