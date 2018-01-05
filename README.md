@@ -6,7 +6,7 @@ Live city bike station status is fetched from a [public REST API](https://api.di
 
 ## Demo
 
-The site is up and running in http://helsinki.purkki.fi/.
+A demo site can be found at https://bikes.inhelsinki.com/.
 
 ## Build
 
