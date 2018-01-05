@@ -21,16 +21,7 @@ if [ -r apikeys ]; then
 			cp src/manifest.json dist/manifest.json
 			cp src/gfx/* dist/gfx/
 			if [ $? -eq 0 ]; then
-				if [ $# -eq 1 ]; then
-					scp -r dist/. $1
-					if [ $? -eq 0 ]; then
-						echo Deployed successfully
-					else
-						echo ERROR: Unable to deploy
-					fi
-				else
-					echo Local build created
-				fi
+				echo Build created
 			else
 				echo ERROR: Copying HTML and graphics failed
 			fi

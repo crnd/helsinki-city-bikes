@@ -22,18 +22,11 @@ There is a Shell script named ```build.sh``` that handles the build process.
 
 Build process can be started by running the ```build.sh``` shell script and it will create a local build to ```dist/``` directory.
 
-Adding a deployment target after the ```build.sh``` shell script will deploy the contents of the ```dist/``` directory to the given target with SCP.
-
-```
-./build.sh username@example.com:/home/username/destination
-```
-
 The build process is as follows:
  * Compile CSS from SCSS
  * Minifiy JavaScript
  * Replace placeholders with actual HERE app ID and code
  * Copy required files to ```dist/```
- * Deploy with SCP if a target was given
 
 ## License
 
