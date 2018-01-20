@@ -19,6 +19,7 @@ if [ -r apikeys ]; then
 			sed -i -e "s/HEREAPPCODE/${keys[1]}/g" dist/app.min.js
 			cp src/index.html dist/index.html
 			cp src/manifest.json dist/manifest.json
+			cp src/robots.txt dist/robots.txt
 			cp src/gfx/*-marker.svg dist/gfx/
 			cp src/gfx/bike.png dist/gfx/
 			cp src/gfx/bikes.jpg dist/gfx/
