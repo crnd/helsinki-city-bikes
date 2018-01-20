@@ -19,7 +19,11 @@ if [ -r apikeys ]; then
 			sed -i -e "s/HEREAPPCODE/${keys[1]}/g" dist/app.min.js
 			cp src/index.html dist/index.html
 			cp src/manifest.json dist/manifest.json
-			cp src/gfx/* dist/gfx/
+			cp src/gfx/*-marker.svg dist/gfx/
+			cp src/gfx/bike.png dist/gfx/
+			cp src/gfx/bikes.jpg dist/gfx/
+			cp src/gfx/hamburger.svg dist/gfx/
+			cp src/gfx/user-locator.svg dist/gfx/
 			if [ $? -eq 0 ]; then
 				echo Build created
 			else
