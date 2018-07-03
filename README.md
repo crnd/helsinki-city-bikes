@@ -10,7 +10,7 @@ A demo site can be found at https://bikes.inhelsinki.com/.
 
 ## Build
 
-There is a Shell script named ```build.sh``` that handles the build process.
+There is a makefile that handles the build process.
 
 ### Prerequisites
 
@@ -20,13 +20,17 @@ There is a Shell script named ```build.sh``` that handles the build process.
 
 ### Process
 
-Build process can be started by running the ```build.sh``` shell script and it will create a local build to ```dist/``` directory.
+Build process can be started by running ```make``` and it will create a local build to ```dist/``` directory.
 
 The build process is as follows:
  * Compile CSS from SCSS
  * Minifiy JavaScript
  * Replace placeholders with actual HERE app ID and code
  * Copy required files to ```dist/```
+
+### Clean
+
+To clean the project directory run ```make clean```.
 
 ## License
 
