@@ -20,6 +20,7 @@ window.onload = function () {
 	var noBikesIcon = new H.map.Icon('gfx/red-marker.svg');
 	var someBikesIcon = new H.map.Icon('gfx/yellow-marker.svg');
 	var enoughBikesIcon = new H.map.Icon('gfx/green-marker.svg');
+	var disabledIcon = new H.map.Icon('gfx/gray-marker.svg');
 
 	// Initialize the map.
 	var platform = new H.service.Platform({
@@ -70,24 +71,33 @@ window.onload = function () {
 				// with marker color representing the amount of available bikes.
 				var markers = [];
 				JSON.parse(this.response).stations.forEach(function (station) {
-					var bubbleContent = '<h1>' + station.name + '</h1><p>' + station.bikesAvailable;
-					if (station.bikesAvailable === 1) {
-						bubbleContent += ' bike available</p>';
+					var bubbleContent = '<h1>' + station.name + '</h1>';
+
+					if (station.state === 'Station on') {
+						if (station.bikesAvailable === 1) {
+							bubbleContent += '<p>1 bike available</p>';
+						} else {
+							bubbleContent += '<p>' + station.bikesAvailable + ' bikes available</p>';
+						}
+
+						if (station.bikesAvailable === 0) {
+							markerOptions.icon = noBikesIcon;
+						} else if (station.bikesAvailable <= 2) {
+							markerOptions.icon = someBikesIcon;
+						} else {
+							markerOptions.icon = enoughBikesIcon;
+						}
 					} else {
-						bubbleContent += ' bikes available</p>';
+						bubbleContent += '<p>Currently not in use</p>';
+						markerOptions.icon = disabledIcon;
 					}
+
 					markerOptions.data = {
 						name: station.name,
 						bikesAvailable: station.bikesAvailable,
 						spacesAvailable: station.spacesAvailable
 					};
-					if (station.bikesAvailable === 0) {
-						markerOptions.icon = noBikesIcon;
-					} else if (station.bikesAvailable <= 2) {
-						markerOptions.icon = someBikesIcon;
-					} else {
-						markerOptions.icon = enoughBikesIcon;
-					}
+
 					var marker = new H.map.Marker({
 						lat: station.y,
 						lng: station.x
