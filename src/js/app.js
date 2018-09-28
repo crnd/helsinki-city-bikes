@@ -119,7 +119,7 @@ window.onload = function () {
 		}
 		bikeStationRequest.open('GET', 'https://api.digitransit.fi/routing/v1/routers/hsl/bike_rental', true);
 		bikeStationRequest.send();
-		setTimeout(updateStations, 180000);
+		setTimeout(updateStations, 60000);
 	})();
 
 	// Store the zoom level and center coordinates from the map every time dragging stops.
