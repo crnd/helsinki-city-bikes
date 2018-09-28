@@ -94,8 +94,7 @@ window.onload = function () {
 
 					markerOptions.data = {
 						name: station.name,
-						bikesAvailable: station.bikesAvailable,
-						spacesAvailable: station.spacesAvailable
+						bikesAvailable: station.bikesAvailable
 					};
 
 					var marker = new H.map.Marker({
