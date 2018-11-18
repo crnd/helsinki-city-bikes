@@ -4,10 +4,6 @@ Helsinki City Bikes is a simple UI for quickly checking the status of [Helsinki 
 
 Live city bike station status is fetched from a [public REST API](https://api.digitransit.fi/routing/v1/routers/hsl/bike_rental).
 
-## Demo
-
-A demo site can be found at https://bikes.inhelsinki.com/.
-
 ## Build
 
 There is a makefile that handles the build process.
